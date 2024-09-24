@@ -10,7 +10,7 @@ const About = () => {
       <div style={styles.profileContainer}>
         <div style={styles.profileCard}>
           <img src={ravikantImage} alt="Ravikant" style={styles.image} />
-          <h2 style={styles.name}>Ravikant</h2>
+          <h2 style={styles.name}>Ravikant Singh</h2>
           <p style={styles.bio}>
             A passionate developer and tech enthusiast with a knack for solving complex problems and creating innovative solutions.
           </p>
