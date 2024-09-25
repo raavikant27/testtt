@@ -161,10 +161,11 @@ const containerStyle = {
   justifyContent: 'center',
   alignItems: 'center',
   fontFamily: "'Poppins', sans-serif",
+  padding: '20px',
 };
 
 const contentWrapper = {
-  width: '90%',
+  width: '100%',
   maxWidth: '1200px',
   backgroundColor: '#ffffff',
   padding: '2rem',
@@ -291,9 +292,9 @@ const iframeStyle = {
 
 const videoTitleStyle = {
   fontSize: '1.2rem',
-  fontWeight: '600',
+  fontWeight: '500',
+  marginTop: '10px',
   color: '#333',
-  margin: '0.5rem 0',
 };
 
 export default UploadVideo;
