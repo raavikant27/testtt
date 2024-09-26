@@ -118,6 +118,7 @@ const Navbar = () => {
         <Link to="/" style={{ color: 'white', textDecoration: 'none', fontSize: '1.1em' }}>Home</Link>
         <Link to="/about" style={{ color: 'white', textDecoration: 'none', fontSize: '1.1em' }}>About</Link>
         <Link to="/contact" style={{ color: 'white', textDecoration: 'none', fontSize: '1.1em' }}>Contact</Link>
+        <Link to="/qna" style={{ color: 'white', textDecoration: 'none', fontSize: '1.1em' }}>Q&A</Link> {/* Link to Q&A */}
         <SubscribeButton onClick={handleSubscribe}>Subscribe</SubscribeButton>
       </div>
 
@@ -135,6 +136,7 @@ const Navbar = () => {
         <SidebarLink to="/upload" onClick={toggleSidebar}>Upload Video</SidebarLink>
         <SidebarLink to="/about" onClick={toggleSidebar}>About</SidebarLink>
         <SidebarLink to="/contact" onClick={toggleSidebar}>Contact</SidebarLink>
+        <SidebarLink to="/qna" onClick={toggleSidebar}>Q&A</SidebarLink> {/* Link to Q&A in Sidebar */}
 
         {/* Social Icons in Sidebar */}
         <SocialIcons>
