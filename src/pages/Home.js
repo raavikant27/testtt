@@ -14,79 +14,138 @@ function Home() {
   );
 
   return (
-    <div style={homeStyle}>
-      <h1 style={{ color: '#00796b' }}>All Uploaded Videos</h1>
-      <input
-        type="text"
-        placeholder="Search videos..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        style={searchInputStyle}
-      />
-      <div style={videoListStyle}>
-        {filteredVideos.length === 0 ? (
-          <p>No videos uploaded yet.</p>
-        ) : (
-          filteredVideos.map((video, index) => (
-            <div key={index} style={videoBoxStyle}>
-              <iframe
-                width="400"
-                height="300"
-                src={`https://www.youtube.com/embed/${video.id}`}
-                title={video.title}
-                frameBorder="0"
-                allowFullScreen
-                style={iframeStyle}
-              />
-              <p style={{ margin: '0.5rem 0', color: '#004d40' }}>{video.title}</p>
-            </div>
-          ))
-        )}
+    <div style={homeContainerStyle}>
+      <div style={contentWrapper}>
+        <h1 style={headingStyle}>All Uploaded Videos</h1>
+        <div style={searchContainerStyle}>
+          <input
+            type="text"
+            placeholder="Search videos..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            style={searchInputStyle}
+          />
+        </div>
+        <div style={videoListStyle}>
+          {filteredVideos.length === 0 ? (
+            <p style={emptyTextStyle}>No videos found.</p>
+          ) : (
+            filteredVideos.map((video, index) => (
+              <div key={index} style={videoBoxStyle}>
+                <iframe
+                  width="100%"
+                  height="200"
+                  src={`https://www.youtube.com/embed/${video.id}`}
+                  title={video.title}
+                  frameBorder="0"
+                  allowFullScreen
+                  style={iframeStyle}
+                />
+                <p style={videoTitleStyle}>{video.title}</p>
+              </div>
+            ))
+          )}
+        </div>
       </div>
     </div>
   );
 }
 
-const homeStyle = {
-  textAlign: 'center',
-  padding: '2rem',
-  backgroundColor: '#e0f2f1', // Light teal background
+// Styles
+const homeContainerStyle = {
   minHeight: '100vh',
+  backgroundColor: '#e9f7fa',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontFamily: "'Poppins', sans-serif",
+  padding: '20px',
+};
+
+const contentWrapper = {
+  width: '100%',
+  maxWidth: '800px',
+  backgroundColor: '#ffffff',
+  padding: '2rem',
+  borderRadius: '12px',
+  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
+};
+
+const headingStyle = {
+  fontSize: '2rem',
+  fontWeight: '700',
+  color: '#333',
+  textAlign: 'center',
+  marginBottom: '1rem',
+  animation: 'fadeIn 1s ease', // Added animation
+};
+
+const searchContainerStyle = {
+  textAlign: 'center',
+  marginBottom: '1.5rem',
 };
 
 const searchInputStyle = {
-  padding: '0.5rem',
-  fontSize: '1em',
-  borderRadius: '4px',
-  border: '1px solid #00796b',
-  margin: '1rem 0',
-  width: '300px',
+  padding: '12px',
+  fontSize: '1rem',
+  width: '100%',
+  maxWidth: '400px',
+  borderRadius: '6px',
+  border: '1px solid #ddd',
+  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)',
+  transition: 'border 0.3s ease', // Transition for border
 };
 
 const videoListStyle = {
-  display: 'flex',
-  flexWrap: 'wrap',
-  justifyContent: 'center',
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+  gap: '1.5rem',
 };
 
 const videoBoxStyle = {
-  margin: '1rem',
-  transition: 'transform 0.3s ease',
-  display: 'inline-block',
-  textAlign: 'center',
-  backgroundColor: '#ffffff', // White background for video box
-  border: '1px solid #00796b',
-  borderRadius: '8px',
+  backgroundColor: '#ffffff',
   padding: '1rem',
-  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)',
+  borderRadius: '10px',
+  boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
+  border: '2px solid #00796b',
+  transition: 'transform 0.3s ease, box-shadow 0.3s ease', // Added transition for hover effect
+  cursor: 'pointer',
+  '&:hover': {
+    transform: 'scale(1.05)', // Scale effect on hover
+    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)', // Change shadow on hover
+  },
 };
 
 const iframeStyle = {
-  borderRadius: '8px',
+  borderRadius: '10px',
+  marginBottom: '10px',
 };
 
-videoBoxStyle[':hover'] = {
-  transform: 'scale(1.05)',
+const videoTitleStyle = {
+  fontSize: '1rem',
+  fontWeight: '600',
+  marginTop: '5px',
+  color: '#004d40',
+  textAlign: 'center',
 };
+
+const emptyTextStyle = {
+  fontSize: '1.2rem',
+  color: '#888',
+  textAlign: 'center',
+};
+
+// Keyframes for animation
+const styleSheet = document.styleSheets[0];
+styleSheet.insertRule(`
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}`, styleSheet.cssRules.length);
+styleSheet.insertRule(`
+  input:focus {
+    border: 2px solid #00796b; // Change border color on focus
+  }
+`, styleSheet.cssRules.length);
 
 export default Home;

@@ -7,10 +7,10 @@ const QnAContainer = styled.div`
   max-width: 800px; /* Increased max-width for a larger section */
   margin: 20px auto; /* Added margin for better spacing */
   text-align: center;
-  background: #f9f9f9;
-  border-radius: 10px;
+  background: #f9f9fb; /* Match the background color from Contact.js */
+  border-radius: 12px; /* Rounded corners for consistency */
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); /* More pronounced shadow */
-  font-family: Arial, sans-serif; /* Improved font for better readability */
+  font-family: 'Roboto', sans-serif; /* Matching font for consistency */
 
   @media (max-width: 600px) {
     padding: 20px; /* Reduced padding on smaller screens */
@@ -21,7 +21,7 @@ const QnAContainer = styled.div`
 const Heading = styled.h2`
   font-size: 2.5em; /* Increased heading size */
   margin-bottom: 20px;
-  color: #00796b; /* Heading color */
+  color: #2d3748; /* Heading color from Contact.js */
 
   @media (max-width: 600px) {
     font-size: 2em; /* Decrease font size on smaller screens */
@@ -37,12 +37,12 @@ const QuestionForm = styled.form`
 const Input = styled.input`
   padding: 15px; /* Increased padding for a more spacious feel */
   font-size: 1.2em; /* Increased font size */
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 1px solid #d1d1d1; /* Border color for consistency */
+  border-radius: 8px; /* Match the border-radius from Contact.js */
   transition: border-color 0.3s;
 
   &:focus {
-    border-color: #00796b;
+    border-color: #2b6cb0; /* Match the focus color */
     outline: none;
   }
 
@@ -54,15 +54,15 @@ const Input = styled.input`
 const SubmitButton = styled.button`
   padding: 15px; /* Increased padding for button */
   font-size: 1.2em; /* Increased font size for button */
-  background-color: #00796b;
+  background-color: #2b6cb0; /* Button color */
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px; /* Match the border-radius from Contact.js */
   cursor: pointer;
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: #005b4f;
+    background-color: #005b4f; /* Change this to a matching color */
   }
 
   @media (max-width: 600px) {
@@ -73,7 +73,7 @@ const SubmitButton = styled.button`
 const ThankYouMessage = styled.div`
   margin-top: 30px;
   font-size: 1.5em; /* Increased font size for thank you message */
-  color: green;
+  color: #38a169; /* Green color for success message */
 
   @media (max-width: 600px) {
     font-size: 1.2em; /* Decrease font size on smaller screens */

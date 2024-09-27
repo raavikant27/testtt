@@ -91,7 +91,7 @@ const styles = {
     maxWidth: '1200px',
     margin: 'auto',
     padding: '60px 20px',
-    backgroundColor: '#f9f9fb',
+    backgroundColor: '#e9f7fa', // Change to your desired background color
     borderRadius: '12px',
     fontFamily: "'Roboto', sans-serif",
     boxShadow: '0 6px 20px rgba(0, 0, 0, 0.1)',
@@ -164,7 +164,7 @@ const styles = {
   button: {
     padding: '12px 25px',
     fontSize: '1.2rem',
-    backgroundColor: '#2b6cb0',
+    backgroundColor: '#00796b', // Change to your desired button color
     color: '#ffffff',
     border: 'none',
     borderRadius: '8px',
@@ -173,7 +173,7 @@ const styles = {
   },
   icon: {
     marginRight: '10px',
-    color: '#3182ce',
+    color: '#00796b', // Change to your desired icon color
   },
   socialLinks: {
     display: 'flex',
@@ -182,7 +182,7 @@ const styles = {
   },
   socialIcon: {
     fontSize: '1.5rem',
-    color: '#2b6cb0',
+    color: '#00796b', // Change to your desired social icon color
     transition: 'color 0.3s ease',
   },
   successMessage: {
