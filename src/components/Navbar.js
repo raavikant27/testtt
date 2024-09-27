@@ -7,7 +7,7 @@ const NavbarContainer = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: #00796b;
+  background-color: #add8e6;  /* Light blue color for Navbar */
   color: white;
 `;
 
@@ -27,26 +27,24 @@ const Navbar = ({ isAuthenticated, onLogout }) => {
   return (
     <NavbarContainer>
       <h1>My Website</h1>
-      <NavLinks>
-        <Link to="/" style={{ color: 'white', textDecoration: 'none' }}>Home</Link>
-        {isAuthenticated && (
-          <>
-            <Link to="/about" style={{ color: 'white', textDecoration: 'none' }}>About</Link>
-            <Link to="/contact" style={{ color: 'white', textDecoration: 'none' }}>Contact</Link>
-            <Link to="/qna" style={{ color: 'white', textDecoration: 'none' }}>Q&A</Link>
-            <Link to="/upload" style={{ color: 'white', textDecoration: 'none' }}>Upload</Link>
-          </>
-        )}
-      </NavLinks>
-      <div>
-        {isAuthenticated ? (
-          <button onClick={handleLogoutClick} style={{ background: 'none', color: 'white', border: 'none', cursor: 'pointer' }}>
-            Logout
-          </button>
-        ) : (
+      {isAuthenticated ? (
+        <NavLinks>
+          <Link to="/" style={{ color: 'white', textDecoration: 'none' }}>Home</Link>
+          <Link to="/about" style={{ color: 'white', textDecoration: 'none' }}>About</Link>
+          <Link to="/contact" style={{ color: 'white', textDecoration: 'none' }}>Contact</Link>
+          <Link to="/qna" style={{ color: 'white', textDecoration: 'none' }}>Q&A</Link>
+          <Link to="/upload" style={{ color: 'white', textDecoration: 'none' }}>Upload</Link>
+          <div>
+            <button onClick={handleLogoutClick} style={{ background: 'none', color: 'white', border: 'none', cursor: 'pointer' }}>
+              Logout
+            </button>
+          </div>
+        </NavLinks>
+      ) : (
+        <div>
           <Link to="/" style={{ color: 'white', textDecoration: 'none' }}>Login</Link>
-        )}
-      </div>
+        </div>
+      )}
     </NavbarContainer>
   );
 };
