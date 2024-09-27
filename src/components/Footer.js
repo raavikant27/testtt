@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const FooterContainer = styled.footer`
-  background-color: #2c3e50; /* Background color */
+  background-color: #4e7d36; /* Mehndi Green color */
   color: white;
   padding: 30px 0; /* Increased padding for a more spacious look */
   text-align: center;

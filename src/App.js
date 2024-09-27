@@ -1,4 +1,3 @@
-// App.js
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './components/Login';
@@ -8,6 +7,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import QnA from './pages/QnA';
 import UploadVideo from './pages/UploadVideo';
+import Footer from './components/Footer';  // Import Footer component
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -26,7 +26,7 @@ const App = () => {
         <Navbar onLogout={handleLogout} isAuthenticated={isLoggedIn} />
         <Routes>
           {!isLoggedIn ? (
-            <Route path="/" element={<Login onLogin={handleLogin} />} /> // Pass handleLogin to Login component
+            <Route path="/" element={<Login onLogin={handleLogin} />} />
           ) : (
             <>
               <Route path="/" element={<Home />} />
@@ -37,6 +37,7 @@ const App = () => {
             </>
           )}
         </Routes>
+        <Footer /> {/* Footer will always be displayed */}
       </div>
     </Router>
   );

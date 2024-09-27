@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import styled from 'styled-components';
+import { FaWhatsapp, FaYoutube, FaTelegram } from 'react-icons/fa';
 
 const LoginContainer = styled.div`
   display: flex;
@@ -11,8 +12,8 @@ const LoginContainer = styled.div`
   font-family: Arial, sans-serif;
 
   @media (max-width: 768px) {
-    height: auto; /* Allow height to adjust on smaller screens */
-    padding: 20px; /* Add padding for smaller screens */
+    height: auto; 
+    padding: 20px;
   }
 `;
 
@@ -42,8 +43,8 @@ const LoginBox = styled.div`
   }
 
   @media (max-width: 768px) {
-    width: 90%; /* Make the box width responsive */
-    padding: 20px; /* Adjust padding for smaller screens */
+    width: 90%; 
+    padding: 20px;
   }
 `;
 
@@ -62,8 +63,8 @@ const Input = styled.input`
   }
 
   @media (max-width: 768px) {
-    padding: 10px; /* Adjust padding for smaller screens */
-    font-size: 14px; /* Smaller font size for smaller screens */
+    padding: 10px;
+    font-size: 14px;
   }
 `;
 
@@ -79,7 +80,7 @@ const Button = styled.button`
   transition: background-color 0.3s, transform 0.2s;
 
   &:hover {
-    background-color: #388e3c; 
+    background-color: #388e3c;
     transform: translateY(-2px);
   }
 
@@ -88,54 +89,100 @@ const Button = styled.button`
   }
 
   @media (max-width: 768px) {
-    padding: 10px; /* Adjust padding for smaller screens */
-    font-size: 14px; /* Smaller font size for smaller screens */
+    padding: 10px;
+    font-size: 14px;
   }
 `;
 
 const FooterLinks = styled.div`
   margin-top: 20px;
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   flex-wrap: wrap;
+  gap: 20px;
+`;
 
-  a {
-    color: #2e7d32; 
-    text-decoration: none;
-    margin: 0 10px;
-    font-weight: bold;
-    transition: color 0.3s;
+const IconLink = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background-color: #2e7d32;
+  border-radius: 50%;
+  color: white;
+  font-size: 24px;
+  transition: background-color 0.3s;
 
-    &:hover {
-      color: #1b5e20; 
-    }
+  &:hover {
+    background-color: #388e3c;
+  }
 
-    @media (max-width: 768px) {
-      margin: 5px; /* Adjust margins for smaller screens */
-    }
+  @media (max-width: 768px) {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+`;
+
+const ToggleText = styled.p`
+  margin-top: 20px;
+  color: #2e7d32;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: underline;
+  transition: color 0.3s;
+
+  &:hover {
+    color: #1b5e20;
   }
 `;
 
 const Login = ({ onLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLogin, setIsLogin] = useState(true); // State to toggle between login and signup
+  const [name, setName] = useState(''); // For signup
+  const [confirmPassword, setConfirmPassword] = useState(''); // For signup
   const navigate = useNavigate(); 
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // Add your login logic here (e.g., API call)
+    // Add your login logic here
+    onLogin();
+    navigate('/about');
+  };
 
-    // Assuming login is successful, call onLogin and navigate to About page
-    onLogin(); // Update authentication state
-    navigate('/about'); // Redirect to About page after login
+  const handleSignup = (e) => {
+    e.preventDefault();
+    // Add your sign-up logic here (e.g., API call)
+    if (password === confirmPassword) {
+      onLogin();
+      navigate('/about');
+    } else {
+      alert("Passwords do not match!");
+    }
+  };
+
+  const toggleForm = () => {
+    setIsLogin(!isLogin);
   };
 
   return (
     <LoginContainer>
       <LoginBox>
-        <h2>Welcome to RadiantNeuron</h2>
-        <p>Join us to stay updated with job opportunities!</p>
-        <form onSubmit={handleLogin}>
+        <h2>{isLogin ? 'Login to RadiantNeuron' : 'Sign Up for RadiantNeuron'}</h2>
+        <p>{isLogin ? 'Join us to stay updated with job opportunities!' : 'Create an account to stay updated!'}</p>
+        <form onSubmit={isLogin ? handleLogin : handleSignup}>
+          {!isLogin && (
+            <Input
+              type="text"
+              placeholder="Full Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          )}
           <Input
             type="email"
             placeholder="Email"
@@ -150,12 +197,30 @@ const Login = ({ onLogin }) => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <Button type="submit">Login</Button>
+          {!isLogin && (
+            <Input
+              type="password"
+              placeholder="Confirm Password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
+          )}
+          <Button type="submit">{isLogin ? 'Login' : 'Sign Up'}</Button>
         </form>
+        <ToggleText onClick={toggleForm}>
+          {isLogin ? "Don't have an account? Sign Up" : "Already have an account? Login"}
+        </ToggleText>
         <FooterLinks>
-          <a href="https://chat.whatsapp.com/Lu2cpuqmUMgFoykwi85Scb" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-          <a href="https://www.youtube.com/@RadiantNeuron-YouTube" target="_blank" rel="noopener noreferrer">YouTube</a>
-          <a href="https://t.me/YourTelegramLink" target="_blank" rel="noopener noreferrer">Telegram</a>
+          <IconLink href="https://chat.whatsapp.com/Lu2cpuqmUMgFoykwi85Scb" target="_blank" rel="noopener noreferrer">
+            <FaWhatsapp />
+          </IconLink>
+          <IconLink href="https://www.youtube.com/@RadiantNeuron-YouTube" target="_blank" rel="noopener noreferrer">
+            <FaYoutube />
+          </IconLink>
+          <IconLink href="https://t.me/YourTelegramLink" target="_blank" rel="noopener noreferrer">
+            <FaTelegram />
+          </IconLink>
         </FooterLinks>
       </LoginBox>
     </LoginContainer>

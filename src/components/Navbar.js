@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const NavbarContainer = styled.nav`
@@ -17,6 +17,13 @@ const NavLinks = styled.div`
 `;
 
 const Navbar = ({ isAuthenticated, onLogout }) => {
+  const navigate = useNavigate();
+
+  const handleLogoutClick = () => {
+    onLogout();
+    navigate('/');  // Redirect to login page after logout
+  };
+
   return (
     <NavbarContainer>
       <h1>My Website</h1>
@@ -33,7 +40,7 @@ const Navbar = ({ isAuthenticated, onLogout }) => {
       </NavLinks>
       <div>
         {isAuthenticated ? (
-          <button onClick={onLogout} style={{ background: 'none', color: 'white', border: 'none', cursor: 'pointer' }}>
+          <button onClick={handleLogoutClick} style={{ background: 'none', color: 'white', border: 'none', cursor: 'pointer' }}>
             Logout
           </button>
         ) : (
