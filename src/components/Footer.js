@@ -2,68 +2,76 @@ import React from 'react';
 import styled from 'styled-components';
 
 const FooterContainer = styled.footer`
-  background-color: #4e7d36; /* Mehndi Green color */
+  background-color: #003c71; /* Darker Blue color */
   color: white;
-  padding: 30px 0; /* Increased padding for a more spacious look */
+  padding: 10px 20px; /* Reduced padding for a compact look */
   text-align: center;
-  font-size: 14px; /* Font size */
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3); /* Enhanced shadow for depth */
+  font-size: 12px; /* Consistent font size */
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3); /* Lighter shadow for depth */
+  border-top: 3px solid #3498db; /* Distinct border */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s; /* Smooth transition for background color */
+  
+  &:hover {
+    background-color: #00508e; /* Lighter blue on hover */
+  }
+
   @media (max-width: 600px) {
-    padding: 20px 0; /* Adjust padding for smaller screens */
-    font-size: 12px; /* Adjust font size for smaller screens */
+    padding: 8px 15px; /* Further reduced padding for smaller screens */
+    font-size: 10px; /* Smaller font size */
   }
 `;
 
 const FooterContent = styled.div`
-  max-width: 900px; /* Increased max width */
+  max-width: 600px; /* Reduced max width for a tighter layout */
   margin: 0 auto;
-  padding: 0 15px; /* Adjusted horizontal padding */
+  padding: 0 10px; /* Adjusted horizontal padding */
 `;
 
 const Title = styled.h2`
-  margin: 0 0 10px; /* Spacing for the title */
-  font-size: 24px; /* Increased title font size */
-  font-weight: bold; /* Bolder title */
-  @media (max-width: 600px) {
-    font-size: 20px; /* Adjust title size for smaller screens */
+  margin: 0 0 5px; /* Reduced margin for the title */
+  font-size: 18px; /* Reduced title font size */
+  font-weight: 600; /* Semi-bold title */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4); /* Enhanced shadow */
+  transition: color 0.3s; /* Transition for hover effect */
+  
+  &:hover {
+    color: #3498db; /* Color change on hover */
   }
 `;
 
 const Description = styled.p`
-  margin: 0 0 15px; /* Spacing for the description */
-  font-size: 16px; /* Increased description font size */
-  @media (max-width: 600px) {
-    font-size: 14px; /* Adjust description size for smaller screens */
-  }
+  margin: 0 0 10px; /* Reduced spacing for the description */
+  font-size: 12px; /* Smaller description font size */
+  line-height: 1.5; /* Improved line spacing */
 `;
 
 const SocialLinks = styled.div`
   display: flex;
   justify-content: center;
-  gap: 20px; /* Increased gap for better spacing */
-  margin-bottom: 15px; /* Margin below social links */
+  gap: 15px; /* Adjusted gap for better spacing */
+  margin-bottom: 10px; /* Reduced margin below social links */
   flex-wrap: wrap; /* Allow links to wrap to the next line on smaller screens */
 
   a {
     color: white;
     text-decoration: none;
     font-weight: 500; /* Font weight */
-    transition: color 0.3s, transform 0.3s; /* Added transform for hover effect */
-    
+    padding: 5px; /* Added padding for clickable area */
+    border-radius: 4px; /* Rounded corners for links */
+    transition: background-color 0.3s, transform 0.3s; /* Transition effects */
+
     &:hover {
-      color: #3498db; /* Hover color */
-      transform: scale(1.1); /* Scale effect on hover */
-      text-decoration: underline; /* Underline on hover */
+      background-color: rgba(255, 255, 255, 0.2); /* Background color on hover */
+      transform: scale(1.05); /* Slightly enlarge on hover */
     }
   }
 `;
 
 const FooterBottom = styled.div`
-  margin-top: 20px; /* Increased margin for copyright notice */
-  font-size: 12px; /* Font size for copyright notice */
-  @media (max-width: 600px) {
-    font-size: 10px; /* Adjust font size for smaller screens */
-  }
+  margin-top: 10px; /* Reduced margin for copyright notice */
+  font-size: 10px; /* Smaller font size for copyright notice */
+  color: rgba(255, 255, 255, 0.7); /* Lighter color for copyright notice */
 `;
 
 const Footer = () => {

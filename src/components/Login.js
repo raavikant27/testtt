@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaWhatsapp, FaYoutube, FaTelegram } from 'react-icons/fa';
 
@@ -8,20 +8,15 @@ const LoginContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(135deg, #a5d6a7, #81c784); 
+  background: linear-gradient(135deg, #cce5ff, #b3e0ff);
   font-family: Arial, sans-serif;
-
-  @media (max-width: 768px) {
-    height: auto; 
-    padding: 20px;
-  }
 `;
 
 const LoginBox = styled.div`
   background-color: white;
   padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
   width: 400px;
   text-align: center;
   transition: transform 0.3s;
@@ -31,20 +26,17 @@ const LoginBox = styled.div`
   }
 
   h2 {
-    color: #2e7d32; 
+    color: #3b5998;
     margin-bottom: 20px;
-    text-transform: uppercase; 
-    font-weight: bold; 
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 28px; /* Increased font size */
   }
 
   p {
     margin-bottom: 20px;
-    color: #555; 
-  }
-
-  @media (max-width: 768px) {
-    width: 90%; 
-    padding: 20px;
+    color: #555;
+    font-size: 14px; /* Increased font size */
   }
 `;
 
@@ -52,26 +44,22 @@ const Input = styled.input`
   width: 100%;
   padding: 12px;
   margin: 10px 0;
-  border: 2px solid #81c784; 
+  border: 2px solid #3b5998; /* Darker border color */
   border-radius: 6px;
   font-size: 16px;
+  transition: border-color 0.3s;
 
   &:focus {
-    border-color: #388e3c; 
+    border-color: #6c757d; /* Grey border on focus */
     outline: none;
-    box-shadow: 0 0 5px rgba(56, 142, 60, 0.5);
-  }
-
-  @media (max-width: 768px) {
-    padding: 10px;
-    font-size: 14px;
+    box-shadow: 0 0 5px rgba(108, 117, 125, 0.5);
   }
 `;
 
 const Button = styled.button`
   width: 100%;
   padding: 12px;
-  background-color: #2e7d32; 
+  background-color: #3b5998; /* Darker blue color */
   color: white;
   border: none;
   border-radius: 6px;
@@ -80,17 +68,12 @@ const Button = styled.button`
   transition: background-color 0.3s, transform 0.2s;
 
   &:hover {
-    background-color: #388e3c;
+    background-color: #4a76b8; /* Lighter blue on hover */
     transform: translateY(-2px);
   }
 
   &:active {
     transform: translateY(0);
-  }
-
-  @media (max-width: 768px) {
-    padding: 10px;
-    font-size: 14px;
   }
 `;
 
@@ -98,7 +81,6 @@ const FooterLinks = styled.div`
   margin-top: 20px;
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
   gap: 20px;
 `;
 
@@ -108,33 +90,27 @@ const IconLink = styled.a`
   justify-content: center;
   width: 50px;
   height: 50px;
-  background-color: #2e7d32;
+  background-color: #3b5998; /* Darker blue for icons */
   border-radius: 50%;
   color: white;
   font-size: 24px;
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: #388e3c;
-  }
-
-  @media (max-width: 768px) {
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
+    background-color: #4a76b8; /* Lighter blue on hover */
   }
 `;
 
 const ToggleText = styled.p`
   margin-top: 20px;
-  color: #2e7d32;
+  color: #3b5998;
   cursor: pointer;
   font-weight: bold;
   text-decoration: underline;
   transition: color 0.3s;
 
   &:hover {
-    color: #1b5e20;
+    color: #2c3e50; /* Darker shade on hover */
   }
 `;
 
@@ -144,7 +120,7 @@ const Login = ({ onLogin }) => {
   const [isLogin, setIsLogin] = useState(true); // State to toggle between login and signup
   const [name, setName] = useState(''); // For signup
   const [confirmPassword, setConfirmPassword] = useState(''); // For signup
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -218,7 +194,7 @@ const Login = ({ onLogin }) => {
           <IconLink href="https://www.youtube.com/@RadiantNeuron-YouTube" target="_blank" rel="noopener noreferrer">
             <FaYoutube />
           </IconLink>
-          <IconLink href="https://t.me/YourTelegramLink" target="_blank" rel="noopener noreferrer">
+          <IconLink href="https://telegram.me" target="_blank" rel="noopener noreferrer">
             <FaTelegram />
           </IconLink>
         </FooterLinks>
