@@ -10,6 +10,10 @@ const LoginContainer = styled.div`
   height: 100vh;
   background: linear-gradient(135deg, #cce5ff, #b3e0ff);
   font-family: Arial, sans-serif;
+
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
 `;
 
 const LoginBox = styled.div`
@@ -25,18 +29,33 @@ const LoginBox = styled.div`
     transform: scale(1.02);
   }
 
+  @media (max-width: 768px) {
+    width: 90%;
+    padding: 30px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 20px;
+  }
+
   h2 {
     color: #3b5998;
     margin-bottom: 20px;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 28px; /* Increased font size */
+    font-size: 24px;
+
+    @media (max-width: 480px) {
+      font-size: 20px;
+    }
   }
 
   p {
     margin-bottom: 20px;
     color: #555;
-    font-size: 14px; /* Increased font size */
+    font-size: 14px;
+
+    @media (max-width: 480px) {
+      font-size: 12px;
+    }
   }
 `;
 
@@ -44,22 +63,27 @@ const Input = styled.input`
   width: 100%;
   padding: 12px;
   margin: 10px 0;
-  border: 2px solid #3b5998; /* Darker border color */
+  border: 2px solid #3b5998;
   border-radius: 6px;
   font-size: 16px;
   transition: border-color 0.3s;
 
   &:focus {
-    border-color: #6c757d; /* Grey border on focus */
+    border-color: #6c757d;
     outline: none;
     box-shadow: 0 0 5px rgba(108, 117, 125, 0.5);
+  }
+
+  @media (max-width: 480px) {
+    padding: 10px;
+    font-size: 14px;
   }
 `;
 
 const Button = styled.button`
   width: 100%;
   padding: 12px;
-  background-color: #3b5998; /* Darker blue color */
+  background-color: #3b5998;
   color: white;
   border: none;
   border-radius: 6px;
@@ -68,12 +92,17 @@ const Button = styled.button`
   transition: background-color 0.3s, transform 0.2s;
 
   &:hover {
-    background-color: #4a76b8; /* Lighter blue on hover */
+    background-color: #4a76b8;
     transform: translateY(-2px);
   }
 
   &:active {
     transform: translateY(0);
+  }
+
+  @media (max-width: 480px) {
+    padding: 10px;
+    font-size: 14px;
   }
 `;
 
@@ -90,53 +119,68 @@ const IconLink = styled.a`
   justify-content: center;
   width: 50px;
   height: 50px;
-  background-color: #3b5998; /* Darker blue for icons */
+  background-color: #3b5998;
   border-radius: 50%;
   color: white;
   font-size: 24px;
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: #4a76b8; /* Lighter blue on hover */
+    background-color: #4a76b8;
+  }
+
+  @media (max-width: 480px) {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
   }
 `;
 
-const ToggleText = styled.p`
+const ToggleButton = styled.button`
   margin-top: 20px;
+  background: none;
+  border: none;
   color: #3b5998;
   cursor: pointer;
-  font-weight: bold;
   text-decoration: underline;
+  font-size: 14px;
   transition: color 0.3s;
 
   &:hover {
-    color: #2c3e50; /* Darker shade on hover */
+    color: #4a76b8;
   }
 `;
 
 const Login = ({ onLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isLogin, setIsLogin] = useState(true); // State to toggle between login and signup
-  const [name, setName] = useState(''); // For signup
-  const [confirmPassword, setConfirmPassword] = useState(''); // For signup
+  const [isLogin, setIsLogin] = useState(true);
+  const [name, setName] = useState(''); // For sign-up
+  const [confirmPassword, setConfirmPassword] = useState(''); // For sign-up
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    // Add your login logic here
-    onLogin();
-    navigate('/about');
-  };
-
-  const handleSignup = (e) => {
-    e.preventDefault();
-    // Add your sign-up logic here (e.g., API call)
-    if (password === confirmPassword) {
+    if (isLogin) {
+      // Handle login
       onLogin();
       navigate('/about');
     } else {
-      alert("Passwords do not match!");
+      // Handle sign-up
+      if (password === confirmPassword) {
+        // Simulate sign-up logic (e.g., API call)
+        console.log('User signed up:', { name, email, password });
+        // Reset fields
+        setEmail('');
+        setPassword('');
+        setConfirmPassword('');
+        setName('');
+        // Redirect or log in the user
+        onLogin();
+        navigate('/about');
+      } else {
+        alert("Passwords don't match!");
+      }
     }
   };
 
@@ -149,11 +193,11 @@ const Login = ({ onLogin }) => {
       <LoginBox>
         <h2>{isLogin ? 'Login to RadiantNeuron' : 'Sign Up for RadiantNeuron'}</h2>
         <p>{isLogin ? 'Join us to stay updated with job opportunities!' : 'Create an account to stay updated!'}</p>
-        <form onSubmit={isLogin ? handleLogin : handleSignup}>
+        <form onSubmit={handleSubmit}>
           {!isLogin && (
             <Input
               type="text"
-              placeholder="Full Name"
+              placeholder="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
@@ -184,20 +228,20 @@ const Login = ({ onLogin }) => {
           )}
           <Button type="submit">{isLogin ? 'Login' : 'Sign Up'}</Button>
         </form>
-        <ToggleText onClick={toggleForm}>
-          {isLogin ? "Don't have an account? Sign Up" : "Already have an account? Login"}
-        </ToggleText>
         <FooterLinks>
-          <IconLink href="https://chat.whatsapp.com/Lu2cpuqmUMgFoykwi85Scb" target="_blank" rel="noopener noreferrer">
+          <IconLink href="https://chat.whatsapp.com/Lu2cpuqmUMgFoykwi85Scb" target="_blank">
             <FaWhatsapp />
           </IconLink>
-          <IconLink href="https://www.youtube.com/@RadiantNeuron-YouTube" target="_blank" rel="noopener noreferrer">
+          <IconLink href="https://www.youtube.com/@RadiantNeuron-YouTube" target="_blank">
             <FaYoutube />
           </IconLink>
-          <IconLink href="https://telegram.me" target="_blank" rel="noopener noreferrer">
+          <IconLink href="https://telegram.me" target="_blank">
             <FaTelegram />
           </IconLink>
         </FooterLinks>
+        <ToggleButton onClick={toggleForm}>
+          {isLogin ? "Don't have an account? Sign Up" : 'Already have an account? Login'}
+        </ToggleButton>
       </LoginBox>
     </LoginContainer>
   );
