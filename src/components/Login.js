@@ -7,26 +7,29 @@ const LoginContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   background: linear-gradient(135deg, #cce5ff, #b3e0ff);
   font-family: Arial, sans-serif;
+  padding: 20px;
 
   @media (max-width: 768px) {
-    padding: 20px;
+    padding: 10px;
   }
 `;
 
 const LoginBox = styled.div`
   background-color: white;
-  padding: 40px;
+  padding: 50px;
   border-radius: 15px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
   width: 400px;
+  max-width: 100%;
   text-align: center;
-  transition: transform 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s;
 
   &:hover {
-    transform: scale(1.02);
+    transform: scale(1.03);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
   }
 
   @media (max-width: 768px) {
@@ -40,60 +43,51 @@ const LoginBox = styled.div`
 
   h2 {
     color: #3b5998;
-    margin-bottom: 20px;
-    font-size: 24px;
-
-    @media (max-width: 480px) {
-      font-size: 20px;
-    }
+    margin-bottom: 25px;
+    font-size: clamp(22px, 5vw, 28px);
   }
 
   p {
     margin-bottom: 20px;
     color: #555;
-    font-size: 14px;
-
-    @media (max-width: 480px) {
-      font-size: 12px;
-    }
+    font-size: clamp(14px, 4vw, 16px);
   }
 `;
 
 const Input = styled.input`
   width: 100%;
-  padding: 12px;
-  margin: 10px 0;
+  padding: 14px;
+  margin: 12px 0;
   border: 2px solid #3b5998;
   border-radius: 6px;
-  font-size: 16px;
-  transition: border-color 0.3s;
+  font-size: clamp(14px, 3.5vw, 16px);
+  transition: border-color 0.3s, box-shadow 0.3s;
 
   &:focus {
     border-color: #6c757d;
     outline: none;
-    box-shadow: 0 0 5px rgba(108, 117, 125, 0.5);
+    box-shadow: 0 0 8px rgba(108, 117, 125, 0.5);
   }
 
   @media (max-width: 480px) {
     padding: 10px;
-    font-size: 14px;
   }
 `;
 
 const Button = styled.button`
   width: 100%;
-  padding: 12px;
+  padding: 14px;
   background-color: #3b5998;
   color: white;
   border: none;
   border-radius: 6px;
-  font-size: 16px;
+  font-size: clamp(14px, 4vw, 16px);
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
 
   &:hover {
     background-color: #4a76b8;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
   }
 
   &:active {
@@ -101,13 +95,12 @@ const Button = styled.button`
   }
 
   @media (max-width: 480px) {
-    padding: 10px;
-    font-size: 14px;
+    padding: 12px;
   }
 `;
 
 const FooterLinks = styled.div`
-  margin-top: 20px;
+  margin-top: 25px;
   display: flex;
   justify-content: center;
   gap: 20px;
@@ -168,14 +161,11 @@ const Login = ({ onLogin }) => {
     } else {
       // Handle sign-up
       if (password === confirmPassword) {
-        // Simulate sign-up logic (e.g., API call)
         console.log('User signed up:', { name, email, password });
-        // Reset fields
         setEmail('');
         setPassword('');
         setConfirmPassword('');
         setName('');
-        // Redirect or log in the user
         onLogin();
         navigate('/about');
       } else {
